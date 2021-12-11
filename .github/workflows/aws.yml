@@ -58,7 +58,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: learn
+          ECR_REPOSITORY: arch-sample-app
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and
@@ -73,13 +73,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: learn
+          container-name: sample-app
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: learn-ec2-service
+          service: sample-app-ec2-service
           cluster: ec2-new-cluster
           wait-for-service-stability: true
