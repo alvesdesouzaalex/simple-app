@@ -1,5 +1,5 @@
 FROM openjdk:11-jdk-slim
-WORKDIR ./simple-app
+WORKDIR /simple-app
 VOLUME /tpm
 LABEL maintainer="alvesdesouzaalex@gmail.com"
 EXPOSE 9090
