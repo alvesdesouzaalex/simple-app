@@ -27,5 +27,5 @@ jobs:
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
-          name: simple-app
-          path: target/simple-app.jar
+          name: artifact
+          path: target/simple-app-0.0.1-SNAPSHOT.jar
