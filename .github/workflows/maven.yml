@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v2.3.0
         with:
           name: artifact
-          path: /tmp/simple-app.jar
+          path: tmp/simple-app.jar
