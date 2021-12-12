@@ -1,11 +1,7 @@
-FROM adoptopenjdk/openjdk11
+FROM openjdk:11-jdk-slim
+VOLUME /tpm
 LABEL maintainer="alvesdesouzaalex@gmail.com"
-ARG ARTIFACT_NAME
-ARG IMAGE_VERSION
-ARG NEW_ARTIFACT_NAME
-EXPOSE 8080
-ADD target/${ARTIFACT_NAME}*.jar ${NEW_ARTIFACT_NAME}.jar
-RUN printf "IMAGE_VERSION=${IMAGE_VERSION}" > version.properties
-COPY entrypoint.sh ./entrypoint.sh
-RUN chmod +x ./entrypoint.sh
-ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
+EXPOSE 9090
+ADD target/simple-app-0.0.1-SNAPSHOT.jar  app.jar
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
