@@ -2,7 +2,7 @@ FROM openjdk:11-jdk-slim
 VOLUME /tpm
 LABEL maintainer="alvesdesouzaalex@gmail.com"
 EXPOSE 9090
-RUN echo "${PWD}"
+RUN echo "${LS}"
 RUN sleep 30
 ARG JAR_FILE=simple-app
 COPY ${JAR_FILE} app.jar
