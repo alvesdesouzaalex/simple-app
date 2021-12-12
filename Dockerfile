@@ -1,8 +1,11 @@
 FROM adoptopenjdk/openjdk11
 LABEL maintainer="alvesdesouzaalex@gmail.com"
+ARG ARTIFACT_NAME
+ARG IMAGE_VERSION
+ARG NEW_ARTIFACT_NAME
 EXPOSE 8080
-ADD target/simple-app-0.0.1-SNAPSHOT.jar simple-app.jar
-RUN printf "IMAGE_VERSION=simple-app" > version.properties
+ADD target/${ARTIFACT_NAME}*.jar ${NEW_ARTIFACT_NAME}.jar
+RUN printf "IMAGE_VERSION=${IMAGE_VERSION}" > version.properties
 COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
